@@ -1,0 +1,25 @@
+[project]
+name = "nicelogin"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "20001220",email = "2482928754@qq.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+dependencies = [
+    "nicegui (>=2.12.1,<3.0.0)",
+    "aiosqlite (>=0.21.0,<0.22.0)",
+    "sqlalchemy (>=2.0.38,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "nicelogin", from = "src"}]
+[[tool.poetry.source]]
+name = "mirrors"
+url = "https://mirrors.aliyun.com/pypi/simple"
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
