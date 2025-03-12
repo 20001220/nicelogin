@@ -44,3 +44,16 @@ async def login_user(username: str, password: str):
         if user and user.password == hash_password(password):
             return f"欢迎，{username}"
         return "用户名或密码错误"
+
+
+# 用户查询功能
+async def get_user_info(username: str) -> dict:
+    async with async_session() as session:
+        result = await session.execute(
+            select(User).filter_by(username=username)
+        )
+        user = result.scalars().first()
+        return {
+            "username": user.username,
+            "created_at": user.created_at.isoformat()
+        } if user else None

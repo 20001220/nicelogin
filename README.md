@@ -49,10 +49,21 @@ docker run -p 5000:5000 nicelogin
 
 项目同样将在 `http://localhost:5000` 运行。
 
-### 开发思路
+### 3.服务器部署
 
-- 使用 `NiceGUI` 框架快速构建 Web UI，提供简洁的交互。
-- 采用 `SQLite` 存储用户数据，并使用 `SQLAlchemy` 进行 ORM 操作。
-- 通过 `Poetry` 进行依赖管理，保证环境一致性。
-- 采用 `asyncio` 进行异步操作，提高性能。
+我通过docker把这个项目部署在了我的云服务器上，开放了5000端口用来进行访问
 
+```
+相关docker命令
+docker build -t nicelogin .
+把数据库挂载出来
+docker run -d --name nicelogin -p 5000:5000 -v $(pwd)/../docker/sqlite_data/database.db:/app/database.db nicelogin
+可以通过下面这个ip+端口访问云服务器上的项目
+http://123.207.48.210:5000
+```
+
+### 两次提交
+
+1.实现了初始功能
+
+2.添加一个简单的 **API** 用来返回登录之后的当前用户信息，并显示在网页上；调整了Dockerfile文件
